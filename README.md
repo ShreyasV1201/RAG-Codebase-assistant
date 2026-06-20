@@ -12,25 +12,25 @@ Built with **Next.js**, **ChromaDB**, **Ollama**, and **Local Embeddings**.
 
 > Add screenshot here
 
-![Home Page](./screenshots/home.png)
+![Home Page](./app/screenshots/home.png)
 
 ### GitHub Repository Import
 
 > Add screenshot here
 
-![Import Page](./screenshots/import.png)
+![Import Page](./app/screenshots/import.png)
 
 ### Indexed Files
 
 > Add screenshot here
 
-![Indexed Files](./screenshots/indexed-files.png)
+![Indexed Files](./app/screenshots/indexed-files.png)
 
 ### Settings Page
 
 > Add screenshot here
 
-![Settings](./screenshots/settings.png)
+![Settings](./app/screenshots/settings.png)
 
 ---
 
