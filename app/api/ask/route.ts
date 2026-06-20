@@ -3,7 +3,7 @@ import { queryCodebase } from "@/app/lib/rag";
 
 export async function POST(req: NextRequest) {
   try {
-    const { question, repoId } = await req.json();
+    const { question, repoId, settings } = await req.json();
 
     if (!question) {
       return NextResponse.json(
@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const result = await queryCodebase(question, repoId);
+    const result = await queryCodebase(question, repoId, settings);
 
     return NextResponse.json({
       success: true,

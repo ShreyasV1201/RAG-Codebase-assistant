@@ -50,14 +50,18 @@ export async function storeChunks(
   console.log("AFTER ADD", fileName);
 }
 
-export async function queryCodebase(question: string, repoId?: string) {
+export async function queryCodebase(
+  question: string,
+  repoId?: string,
+  settings?: any,
+) {
   const collection = await getCollection();
 
   const queryEmbedding: number[] = await getEmbedding(question);
 
   const result = await collection.query({
     queryEmbeddings: [queryEmbedding],
-    nResults: 25,
+    nResults: settings?.topK || 25,
     include: ["documents", "metadatas", "distances"],
     where: repoId ? { repoId } : undefined,
   });
@@ -77,7 +81,7 @@ export async function queryCodebase(question: string, repoId?: string) {
 
   const context = docs.join("\n\n").slice(0, 12000);
 
-  const answer = await generateAnswer(question, context);
+  const answer = await generateAnswer(question, context, settings);
 
   const sources = [
     ...new Set(

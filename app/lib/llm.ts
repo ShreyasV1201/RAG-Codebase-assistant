@@ -1,8 +1,12 @@
 import ollama from "ollama";
 
-export async function generateAnswer(question: string, context: string) {
+export async function generateAnswer(
+  question: string,
+  context: string,
+  settings?: any,
+) {
   const response = await ollama.chat({
-    model: "qwen2.5:1.5b",
+    model: settings?.model || "phi3",
     messages: [
       {
         role: "system",
@@ -35,8 +39,8 @@ ${question}
       },
     ],
     options: {
-      temperature: 0.1,
-      num_predict: 400,
+      temperature: settings?.temperature ?? 0.1,
+      num_predict: settings?.maxTokens ?? 400,
     },
   });
 
