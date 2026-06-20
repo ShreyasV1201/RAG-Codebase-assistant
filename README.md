@@ -1,36 +1,308 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 RAG Codebase Assistant
 
-## Getting Started
+An AI-powered Codebase Assistant that allows developers to import GitHub repositories, index source code into a vector database, and ask natural language questions about an entire codebase.
 
-First, run the development server:
+Built with **Next.js**, **ChromaDB**, **Ollama**, and **Local Embeddings**.
+
+---
+
+## 📸 Screenshots
+
+### Home Page
+
+> Add screenshot here
+
+![Home Page](./screenshots/home.png)
+
+### GitHub Repository Import
+
+> Add screenshot here
+
+![Import Page](./screenshots/import.png)
+
+### Indexed Files
+
+> Add screenshot here
+
+![Indexed Files](./screenshots/indexed-files.png)
+
+### Settings Page
+
+> Add screenshot here
+
+![Settings](./screenshots/settings.png)
+
+---
+
+## ✨ Features
+
+### 🔍 AI-Powered Code Search
+
+Ask questions such as:
+
+* How does authentication work?
+* Which database is used?
+* What are the main API routes?
+* Explain the project architecture.
+* Where is user management implemented?
+
+The assistant retrieves relevant code chunks and generates answers using a local LLM.
+
+---
+
+### 📦 GitHub Repository Import
+
+Import public GitHub repositories directly.
+
+The system:
+
+1. Crawls repository files
+2. Filters supported source files
+3. Chunks code intelligently
+4. Generates embeddings
+5. Stores vectors in ChromaDB
+
+---
+
+### 📄 Document Upload Support
+
+Upload local files and index them into the vector database.
+
+Supported formats:
+
+* TXT
+* PDF
+* DOCX
+
+---
+
+### 🧠 Retrieval-Augmented Generation (RAG)
+
+The assistant uses:
+
+* Local embeddings
+* Semantic search
+* Vector similarity retrieval
+* Context-aware answer generation
+
+to answer questions grounded in the indexed codebase.
+
+---
+
+### 📚 Multi-Repository Support
+
+Query:
+
+* A specific repository
+* Multiple repositories
+* Entire indexed collection
+
+through repository filtering.
+
+---
+
+### ⚙️ Configurable Settings
+
+Customize:
+
+* LLM Model
+* Temperature
+* Maximum Tokens
+* Top-K Retrieval Results
+* Source Visibility
+
+without changing code.
+
+---
+
+### 📊 Codebase Insights
+
+Generate quick insights about indexed repositories:
+
+* File distribution
+* Repository metadata
+* Indexed content overview
+* Repository statistics
+
+---
+
+### 📁 Indexed File Explorer
+
+Browse all indexed files currently stored in the vector database.
+
+Useful for:
+
+* Verification
+* Debugging
+* Retrieval inspection
+
+---
+
+## 🏗️ Architecture
+
+```text
+GitHub Repo / Uploaded Files
+            │
+            ▼
+      Text Extraction
+            │
+            ▼
+       Chunking Layer
+            │
+            ▼
+      Xenova Embeddings
+            │
+            ▼
+         ChromaDB
+            │
+            ▼
+     Similarity Search
+            │
+            ▼
+       Retrieved Context
+            │
+            ▼
+      Ollama (Phi-3)
+            │
+            ▼
+        Final Answer
+```
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+* Next.js 16
+* React 19
+* TypeScript
+* Tailwind CSS
+
+### Backend
+
+* Next.js Route Handlers
+* Node.js
+
+### AI / RAG
+
+* Ollama
+* Phi-3
+* Xenova Transformers
+* ChromaDB
+* LangChain Text Splitters
+
+### File Processing
+
+* pdf-parse
+* Mammoth
+
+---
+
+## 📂 Project Structure
+
+```text
+app/
+├── api/
+│   ├── ask/
+│   ├── github/
+│   ├── upload/
+│   ├── repos/
+│   ├── insights/
+│   └── indexed-files/
+│
+├── import/
+├── indexed-files/
+├── insights/
+├── settings/
+│
+└── lib/
+    ├── chunkText.ts
+    ├── embeddings.ts
+    ├── github.ts
+    ├── githubImport.ts
+    ├── indexedFiles.ts
+    ├── insights.ts
+    ├── llm.ts
+    ├── rag.ts
+    ├── settings.ts
+    └── vectorStore.ts
+```
+
+---
+
+## ⚡ Installation
+
+### Clone Repository
+
+```bash
+git clone https://github.com/ShreyasV1201/RAG-Codebase-assistant.git
+cd RAG-Codebase-assistant
+```
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Start ChromaDB
+
+```bash
+docker run -p 8000:8000 chromadb/chroma
+```
+
+### Start Ollama
+
+```bash
+ollama serve
+```
+
+Pull Phi-3:
+
+```bash
+ollama pull phi3
+```
+
+### Run Application
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔮 Planned Improvements
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Phase 3
 
-## Learn More
+* Streaming Responses
+* AST-Based Chunking
+* Conversation Memory
+* Better Repository Summaries
+* Improved Retrieval Ranking
 
-To learn more about Next.js, take a look at the following resources:
+### Future Ideas
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* Hybrid Search
+* Repository Comparison
+* Agentic Repository Navigation
+* Diagram Generation
+* Code Flow Visualization
+* Cloud Deployment Support
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 👨‍💻 Author
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Shreyas V**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Computer Science & Engineering (Cybersecurity)
+
+Built as a personal project to explore:
+
+* Retrieval-Augmented Generation (RAG)
+* Vector Databases
+* Local LLMs
+* Code Understanding Systems
+* AI Developer Tools
